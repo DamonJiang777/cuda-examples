@@ -6,7 +6,7 @@
 #include <strings.h>
 
 #ifndef STRNCASECMP
-#  define STRNCASECMP strncasecmp
+#define STRNCASECMP strncasecmp
 #endif
 
 inline int StringRemoveDelimiter(char delimiter, const char *string)

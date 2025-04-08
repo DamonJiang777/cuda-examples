@@ -35,8 +35,8 @@ public:
 #else
 
 // declarations for Stopwatch on Linux and Mac OSX
-#  include <ctime>
-#  include <sys/time.h>
+#include <ctime>
+#include <sys/time.h>
 
 class StopWatchLinux : public StopWatchInterface
 {

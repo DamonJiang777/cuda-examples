@@ -43,7 +43,7 @@ IncludeCategories:
   - Regex: '.*'
     Priority: 3
 IndentCaseLabels: true
-IndentPPDirectives: AfterHash
+IndentPPDirectives: None
 IndentWidth: 2
 KeepEmptyLinesAtTheStartOfBlocks: false
 MaxEmptyLinesToKeep: 1
@@ -61,7 +61,6 @@ SpaceBeforeInheritanceColon: true
 SpaceBeforeParens: ControlStatements
 SpaceBeforeRangeBasedForLoopColon: true
 SpaceInEmptyParentheses: false
-SpacesBeforeTrailingComments: 1
 SpacesInAngles: false
 SpacesInContainerLiterals: false
 SpacesInCStyleCastParentheses: false
