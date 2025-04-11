@@ -83,7 +83,7 @@ inline int _ConvertSMVer2Cores(int major, int minor)
                                     {0x70, 64},  {0x72, 64},  {0x75, 64},  {0x80, 64},  {0x86, 128},
                                     {0x87, 128}, {0x89, 128}, {0x90, 128}, {0xa0, 128}, {0xa1, 128},
                                     {0xc0, 129}, {-1, -1}};
-  int       index                = 0;
+  int index = 0;
 
   while (nGpuArchCoresPerSM[index].SM != -1)
   {
@@ -126,10 +126,11 @@ inline int GpuDeviceInit(int device_id)
   if (device_id > device_cnt - 1)
   {
     fprintf(stderr, "\n");
-    fprintf(stderr, ">> %d CUDA capable GPU device(s) detected. <<\n");
+    fprintf(stderr, ">> %d CUDA capable GPU device(s) detected. <<\n", device_cnt);
     fprintf(stderr,
             ">> GpuDeviceInit (-device=%d) is not a valid"
-            " GPU device. <<\n");
+            " GPU device. <<\n",
+            device_id);
     fprintf(stderr, "\n");
     return -device_id;
   }
@@ -165,10 +166,10 @@ inline int GpuDeviceInit(int device_id)
 // This function returns the best GPU (with maximum GFLOPS)
 inline int GpuGetMaxGflopsDeviceId()
 {
-  int current_device    = 0;
-  int sm_per_multiproc  = 0;
-  int max_pref_device   = 0;
-  int device_count      = 0;
+  int current_device = 0;
+  int sm_per_multiproc = 0;
+  int max_pref_device = 0;
+  int device_count = 0;
   int device_prohibited = 0;
 
   uint64_t max_compute_pref = 0;
@@ -185,8 +186,8 @@ inline int GpuGetMaxGflopsDeviceId()
   while (current_device < device_count)
   {
     int compute_mode = -1;
-    int major        = 0;
-    int minor        = 0;
+    int major = 0;
+    int minor = 0;
     checkCudaErrors(cudaDeviceGetAttribute(&compute_mode, cudaDevAttrComputeMode, current_device));
     checkCudaErrors(
         cudaDeviceGetAttribute(&major, cudaDevAttrComputeCapabilityMajor, current_device));
@@ -208,7 +209,7 @@ inline int GpuGetMaxGflopsDeviceId()
     }
 
     int multi_process_cnt = 0;
-    int clock_rate        = 0;
+    int clock_rate = 0;
     checkCudaErrors(
         cudaDeviceGetAttribute(&multi_process_cnt, cudaDevAttrMultiProcessorCount, current_device));
     cudaError_t result = cudaDeviceGetAttribute(&clock_rate, cudaDevAttrClockRate, current_device);
@@ -237,7 +238,7 @@ inline int GpuGetMaxGflopsDeviceId()
     if (compute_perf > max_compute_pref)
     {
       max_compute_pref = compute_perf;
-      max_pref_device  = current_device;
+      max_pref_device = current_device;
     }
     else
     {
